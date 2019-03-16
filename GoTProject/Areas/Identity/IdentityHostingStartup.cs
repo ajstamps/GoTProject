@@ -15,14 +15,7 @@ namespace GoTProject.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                services.AddDbContext<GoTProjectContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("GoTProjectContextConnection")));
-
-                services.AddDefaultIdentity<GoTProjectUser>()
-                    .AddEntityFrameworkStores<GoTProjectContext>();
-            });
+            
         }
     }
 }

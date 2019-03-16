@@ -37,3 +37,8 @@ c:\users\alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Ra
 c:\users\alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewImports.g.cshtml.cs
 c:\users\alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
 c:\users\alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Meals\Create.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Meals\Delete.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Meals\Details.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Meals\Edit.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Meals\Index.g.cshtml.cs
