@@ -5,7 +5,7 @@ using System.Web;
 
 using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantManagementSystem.Models
+namespace GoTProject.Models
 {
     public class Supplier
     {

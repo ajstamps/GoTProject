@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GoTProject.Models;
-using RestaurantManagementSystem.Models;
 
 namespace GoTProject.Controllers
 {

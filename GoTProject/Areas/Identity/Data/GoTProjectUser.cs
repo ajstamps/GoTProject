@@ -18,9 +18,6 @@ namespace GoTProject.Areas.Identity.Data
         [PersonalData]
         public DateTime DOB { get; set; }
 
-        public bool IsEmployee { get; set; }
-        public bool IsAdmin { get; set; }
-        public bool IsInventoryManager { get; set; }
         public int Priority { get; set; }
     }
 }

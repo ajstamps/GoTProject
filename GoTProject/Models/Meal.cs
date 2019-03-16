@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantManagementSystem.Models
+namespace GoTProject.Models
 {
     public class Meal
     {

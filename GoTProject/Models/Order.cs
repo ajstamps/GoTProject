@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace RestaurantManagementSystem.Models
+namespace GoTProject.Models
 {
     public class Order
     {

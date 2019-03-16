@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using GoTProject.Areas.Identity.Data;
 
-namespace RestaurantManagementSystem.Models
+namespace GoTProject.Models
 {
     public class Product
     {
