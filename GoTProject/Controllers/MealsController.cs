@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GoTProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GoTProject.Controllers
 {
@@ -19,12 +20,14 @@ namespace GoTProject.Controllers
         }
 
         // GET: Meals
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Meals.ToListAsync());
         }
 
         // GET: Meals/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +46,7 @@ namespace GoTProject.Controllers
         }
 
         // GET: Meals/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +57,7 @@ namespace GoTProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("MealID,MealName,MealPrice,Active")] Meal meal)
         {
             if (ModelState.IsValid)
@@ -65,6 +70,7 @@ namespace GoTProject.Controllers
         }
 
         // GET: Meals/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +91,7 @@ namespace GoTProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("MealID,MealName,MealPrice,Active")] Meal meal)
         {
             if (id != meal.MealID)
@@ -116,6 +123,7 @@ namespace GoTProject.Controllers
         }
 
         // GET: Meals/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
