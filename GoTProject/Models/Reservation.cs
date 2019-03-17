@@ -23,5 +23,10 @@ namespace GoTProject.Models
         public string PartyName { get; set; }
 
         public IList<Seat> Seats { get; set; }
+
+        public Reservation()
+        {
+            Cancelled = false;
+        }
     }
 }

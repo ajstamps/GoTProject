@@ -54,3 +54,9 @@ C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Ra
 C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Reservations\Edit.g.cshtml.cs
 C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Reservations\Index.g.cshtml.cs
 C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Login.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Suppliers\Create.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Suppliers\Delete.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Suppliers\Details.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Suppliers\Edit.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Views\Suppliers\Index.g.cshtml.cs
+C:\Users\Alexander\source\repos\GoTProject\GoTProject\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\PersonalData.g.cshtml.cs

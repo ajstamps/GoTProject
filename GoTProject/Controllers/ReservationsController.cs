@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GoTProject.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using GoTProject.Areas.Identity.Data;
 
 namespace GoTProject.Controllers
 {
     public class ReservationsController : Controller
     {
         private readonly GoTProjectContext _context;
-
-        public ReservationsController(GoTProjectContext context)
+        private readonly UserManager<GoTProjectUser> _userManager;
+        public ReservationsController(GoTProjectContext context, UserManager<GoTProjectUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Reservations
@@ -62,9 +65,10 @@ namespace GoTProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                reservation.Reservee = await _userManager.FindByNameAsync(User.Identity.Name);
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(HomeController.Index));
             }
             return View(reservation);
         }

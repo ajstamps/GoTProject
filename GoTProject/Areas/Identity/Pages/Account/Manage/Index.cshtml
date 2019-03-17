@@ -51,19 +51,41 @@
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <label asp-for="@Model.Input.Reservations"></label>
-            <ul>
-                @foreach (var item in Model.Input.Reservations)
-                {
-                    <li>
-                        <input asp-for="@item.PartyName" />
-                    </li>
-                }
-            </ul>
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <label asp-for="@Model.Input.Reservations[0].PartyName"></label>
+                    </th>
+                    <th>
+                        <label asp-for="@Model.Input.Reservations[0].DateOfReservation"></label>
+                    </th>
+                    <th>
+                        <label asp-for="@Model.Input.Reservations[0].Cancelled"></label>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Input.Reservations)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PartyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfReservation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cancelled)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-        
     </div>
 </div>
 

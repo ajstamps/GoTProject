@@ -84,12 +84,9 @@ namespace GoTProject.Areas.Identity.Pages.Account.Manage
 
             var reservations = _context.Reservations
                 .Where(r => r.Reservee == user)
+                .Where(r => DateTime.Compare(DateTime.Now, r.DateOfReservation) < 0)
                 .ToList();
 
-            foreach (var item in reservations)
-            {
-                Debug.WriteLine(item.PartyName);
-            }
 
             Username = userName;
 

@@ -4,14 +4,16 @@ using GoTProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GoTProject.Migrations
 {
     [DbContext(typeof(GoTProjectContext))]
-    partial class GoTProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20190317173349_NoUpdateCheckingMigrations")]
+    partial class NoUpdateCheckingMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

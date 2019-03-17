@@ -10,24 +10,23 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GoTProject.Controllers
 {
-    public class MealsController : Controller
+    [Authorize(Roles = "Admin, InventoryManger")]
+    public class SuppliersController : Controller
     {
         private readonly GoTProjectContext _context;
 
-        public MealsController(GoTProjectContext context)
+        public SuppliersController(GoTProjectContext context)
         {
             _context = context;
         }
 
-        // GET: Meals
-        [AllowAnonymous]
+        // GET: Suppliers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Meals.ToListAsync());
+            return View(await _context.Suppliers.ToListAsync());
         }
 
-        // GET: Meals/Details/5
-        [AllowAnonymous]
+        // GET: Suppliers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,42 +34,39 @@ namespace GoTProject.Controllers
                 return NotFound();
             }
 
-            var meal = await _context.Meals
-                .FirstOrDefaultAsync(m => m.MealID == id);
-            if (meal == null)
+            var supplier = await _context.Suppliers
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (supplier == null)
             {
                 return NotFound();
             }
 
-            return View(meal);
+            return View(supplier);
         }
 
-        // GET: Meals/Create
-        [Authorize(Roles = "Admin")]
+        // GET: Suppliers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Meals/Create
+        // POST: Suppliers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("MealID,MealName,MealPrice,Description,Active")] Meal meal)
+        public async Task<IActionResult> Create([Bind("ID,CompanyName,Phone")] Supplier supplier)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(meal);
+                _context.Add(supplier);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(meal);
+            return View(supplier);
         }
 
-        // GET: Meals/Edit/5
-        [Authorize(Roles = "Admin")]
+        // GET: Suppliers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +74,22 @@ namespace GoTProject.Controllers
                 return NotFound();
             }
 
-            var meal = await _context.Meals.FindAsync(id);
-            if (meal == null)
+            var supplier = await _context.Suppliers.FindAsync(id);
+            if (supplier == null)
             {
                 return NotFound();
             }
-            return View(meal);
+            return View(supplier);
         }
 
-        // POST: Meals/Edit/5
+        // POST: Suppliers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("MealID,MealName,MealPrice,Description,Active")] Meal meal)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CompanyName,Phone")] Supplier supplier)
         {
-            if (id != meal.MealID)
+            if (id != supplier.ID)
             {
                 return NotFound();
             }
@@ -103,12 +98,12 @@ namespace GoTProject.Controllers
             {
                 try
                 {
-                    _context.Update(meal);
+                    _context.Update(supplier);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MealExists(meal.MealID))
+                    if (!SupplierExists(supplier.ID))
                     {
                         return NotFound();
                     }
@@ -119,11 +114,10 @@ namespace GoTProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(meal);
+            return View(supplier);
         }
 
-        // GET: Meals/Delete/5
-        [Authorize(Roles = "Admin")]
+        // GET: Suppliers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,30 +125,30 @@ namespace GoTProject.Controllers
                 return NotFound();
             }
 
-            var meal = await _context.Meals
-                .FirstOrDefaultAsync(m => m.MealID == id);
-            if (meal == null)
+            var supplier = await _context.Suppliers
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (supplier == null)
             {
                 return NotFound();
             }
 
-            return View(meal);
+            return View(supplier);
         }
 
-        // POST: Meals/Delete/5
+        // POST: Suppliers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var meal = await _context.Meals.FindAsync(id);
-            _context.Meals.Remove(meal);
+            var supplier = await _context.Suppliers.FindAsync(id);
+            _context.Suppliers.Remove(supplier);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MealExists(int id)
+        private bool SupplierExists(int id)
         {
-            return _context.Meals.Any(e => e.MealID == id);
+            return _context.Suppliers.Any(e => e.ID == id);
         }
     }
 }

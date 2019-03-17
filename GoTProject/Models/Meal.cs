@@ -15,6 +15,9 @@ namespace GoTProject.Models
         [DataType(DataType.Currency)]
         public decimal MealPrice { get; set; }
 
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+
         [Display(Name = "Active")]
         public bool Active { get; set; }
 
