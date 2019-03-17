@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using GoTProject.Areas.Identity.Data;
+using GoTProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
 namespace GoTProject.Areas.Identity.Pages.Account.Manage
 {
@@ -17,15 +19,17 @@ namespace GoTProject.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<GoTProjectUser> _userManager;
         private readonly SignInManager<GoTProjectUser> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly GoTProjectContext _context;
 
         public IndexModel(
             UserManager<GoTProjectUser> userManager,
             SignInManager<GoTProjectUser> signInManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender, GoTProjectContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _context = context;
         }
 
         public string Username { get; set; }
@@ -62,6 +66,8 @@ namespace GoTProject.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            public List<Reservation> Reservations { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -76,6 +82,15 @@ namespace GoTProject.Areas.Identity.Pages.Account.Manage
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
+            var reservations = _context.Reservations
+                .Where(r => r.Reservee == user)
+                .ToList();
+
+            foreach (var item in reservations)
+            {
+                Debug.WriteLine(item.PartyName);
+            }
+
             Username = userName;
 
             Input = new InputModel
@@ -84,7 +99,8 @@ namespace GoTProject.Areas.Identity.Pages.Account.Manage
                 LastName = user.LastName,
                 DOB = user.DOB,
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Reservations = reservations
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);

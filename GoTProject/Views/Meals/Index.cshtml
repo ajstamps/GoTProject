@@ -27,6 +27,8 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+    @if (item.Active || User.IsInRole("Admin"))
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.MealName)
@@ -35,11 +37,18 @@
                 @Html.DisplayFor(modelItem => item.MealPrice)
             </td>
             <td>
+                <a asp-action="Details" asp-route-id="@item.MealID">Details</a> 
+            </td>
+
+            @if (User.IsInRole("Admin"))
+            {
+            <td>
                 <a asp-action="Edit" asp-route-id="@item.MealID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MealID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.MealID">Delete</a>
             </td>
+            }
         </tr>
-}
+        }
+    }
     </tbody>
 </table>
