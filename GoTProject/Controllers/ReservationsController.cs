@@ -23,14 +23,14 @@ namespace GoTProject.Controllers
         }
 
         // GET: Reservations
-        [Authorize(Roles = "Admin, InventoryManager, Employee")]
+        [Authorize(Roles = "Admin, InventoryManager, Employee, Customer")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Reservations.ToListAsync());
         }
 
         // GET: Reservations/Details/5
-        [Authorize(Roles = "Admin, InventoryManager, Employee")]
+        [Authorize(Roles = "Admin, InventoryManager, Employee, Customer")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -66,11 +66,12 @@ namespace GoTProject.Controllers
             if (ModelState.IsValid)
             {
                 reservation.Reservee = await _userManager.FindByNameAsync(User.Identity.Name);
+
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index));
             }
-            return View(reservation);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Reservations/Edit/5
